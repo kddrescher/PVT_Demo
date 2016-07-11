@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Reaction Time-->
@@ -21,18 +22,25 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55R-mf-hac">
                                 <rect key="frame" x="-8" y="20" width="391" height="44"/>
                                 <items>
-                                    <navigationItem title="Psychomotor Vigilence" id="XKs-MP-qfJ">
-                                        <barButtonItem key="leftBarButtonItem" enabled="NO" image="share" id="WL5-Zn-ygi">
+                                    <navigationItem title="Vigilence Task" id="XKs-MP-qfJ">
+                                        <barButtonItem key="leftBarButtonItem" image="graph_30" id="WL5-Zn-ygi">
                                             <connections>
-                                                <segue destination="K3O-yl-zZJ" kind="show" identifier="outputSegue" id="oJ7-Ab-ow7"/>
+                                                <segue destination="ILn-kT-7gd" kind="show" identifier="outputSegue" id="2U4-E8-Xvo"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="settings_30" id="ezr-ir-vQD">
-                                            <connections>
-                                                <action selector="infoPress:" destination="hpi-4B-YaX" id="po1-L7-aSb"/>
-                                                <segue destination="yAZ-CQ-i6Q" kind="show" identifier="settingsSegue" id="jHK-PY-Llc"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem image="settings_30" id="ezr-ir-vQD">
+                                                <connections>
+                                                    <action selector="infoPress:" destination="hpi-4B-YaX" id="po1-L7-aSb"/>
+                                                    <segue destination="yAZ-CQ-i6Q" kind="show" identifier="settingsSegue" id="jHK-PY-Llc"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem enabled="NO" image="share" id="PGa-ll-m6V">
+                                                <connections>
+                                                    <segue destination="K3O-yl-zZJ" kind="show" identifier="exportSegue" id="OLt-qu-lL8"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -62,7 +70,7 @@
                                             <constraint firstItem="TrU-ii-2L6" firstAttribute="leading" secondItem="SIF-ab-XYa" secondAttribute="leading" constant="8" id="dZJ-sm-evd"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmX-Pg-EcW">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmX-Pg-EcW">
                                         <rect key="frame" x="0.0" y="121" width="343" height="421"/>
                                         <color key="backgroundColor" red="0.28235294119999998" green="0.43137254899999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -73,7 +81,7 @@
                                             <action selector="respondPress:" destination="hpi-4B-YaX" eventType="touchUpInside" id="fH6-vR-u61"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8G4-S5-l7g">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8G4-S5-l7g">
                                         <rect key="frame" x="0.0" y="547" width="343" height="40"/>
                                         <color key="backgroundColor" red="0.86025331729999999" green="0.063421930520000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -103,6 +111,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="exportButton" destination="PGa-ll-m6V" id="YVb-42-81e"/>
                         <outlet property="instructLabel" destination="TrU-ii-2L6" id="bLO-YJ-UMv"/>
                         <outlet property="responseButton" destination="tmX-Pg-EcW" id="Vsb-al-RyV"/>
                         <outlet property="shareButton" destination="WL5-Zn-ygi" id="if6-6h-fmL"/>
@@ -112,6 +121,108 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ic2-Wh-zep" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="226.5" y="258.5"/>
+        </scene>
+        <!--Choose Score to Graph-->
+        <scene sceneID="mXW-0u-9rc">
+            <objects>
+                <tableViewController id="8n5-kx-Zsb" customClass="ScoresTableViewController" customModule="Reaction_Time2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="WGq-Y0-HAg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Yec-Pw-IA5" detailTextLabel="Vs1-1p-o2k" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="Lbm-jv-HbJ">
+                                <rect key="frame" x="0.0" y="92" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lbm-jv-HbJ" id="6eI-88-vSw">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yec-Pw-IA5">
+                                            <rect key="frame" x="15" y="19" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vs1-1p-o2k">
+                                            <rect key="frame" x="15" y="38.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8n5-kx-Zsb" id="X7h-ZL-BzC"/>
+                            <outlet property="delegate" destination="8n5-kx-Zsb" id="PAG-NP-Xyc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Choose Score to Graph" id="0lA-kx-8nG">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="TPd-iE-NCe">
+                            <connections>
+                                <action selector="backPress:" destination="8n5-kx-Zsb" id="Ed6-I7-4RF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wOQ-hP-1HR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1219.5" y="258.5"/>
+        </scene>
+        <!--Chart View Controller-->
+        <scene sceneID="PgU-yc-IjW">
+            <objects>
+                <viewController storyboardIdentifier="chartView" id="8NA-Sw-cJF" customClass="ChartViewController" customModule="Reaction_Time2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YGg-MU-evD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Npn-o3-WGC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mcv-vg-t9S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIX-IR-5u9">
+                                <rect key="frame" x="-4" y="28" width="383" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="VDU-Fu-o5o">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="K2g-Ax-cmo">
+                                            <connections>
+                                                <action selector="backPress:" destination="8NA-Sw-cJF" id="TZB-dR-HKF"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXM-Xk-73o" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="72" width="343" height="595"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lXM-Xk-73o" firstAttribute="leading" secondItem="mcv-vg-t9S" secondAttribute="leadingMargin" id="N3f-kn-5sW"/>
+                            <constraint firstItem="Npn-o3-WGC" firstAttribute="top" secondItem="lXM-Xk-73o" secondAttribute="bottom" id="W0B-5j-ET5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dIX-IR-5u9" secondAttribute="trailing" constant="-20" id="YkV-y0-zIf"/>
+                            <constraint firstItem="dIX-IR-5u9" firstAttribute="leading" secondItem="mcv-vg-t9S" secondAttribute="leadingMargin" constant="-20" id="doh-cS-o2r"/>
+                            <constraint firstItem="dIX-IR-5u9" firstAttribute="top" secondItem="YGg-MU-evD" secondAttribute="bottom" constant="8" id="eZf-6j-6AW"/>
+                            <constraint firstItem="lXM-Xk-73o" firstAttribute="top" secondItem="dIX-IR-5u9" secondAttribute="bottom" id="kuj-zX-6PK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lXM-Xk-73o" secondAttribute="trailing" id="vY4-cb-BAq"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="NavigationItem" destination="VDU-Fu-o5o" id="55P-Rs-aQb"/>
+                        <outlet property="lineChartView" destination="lXM-Xk-73o" id="igy-Lx-Yq4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C9h-xw-rv4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1667.5" y="258.5"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="Clb-ug-hyV">
@@ -406,10 +517,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="efM-r6-sCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="641.5" y="258.5"/>
+            <point key="canvasLocation" x="94.5" y="-478.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qK9-K4-UrN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ILn-kT-7gd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4kC-P1-R0Q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8n5-kx-Zsb" kind="relationship" relationship="rootViewController" id="lsN-tQ-t56"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="in9-ev-gw2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="781.5" y="258.5"/>
         </scene>
     </scenes>
     <resources>
+        <image name="graph_30" width="30" height="30"/>
         <image name="settings_30" width="30" height="30"/>
         <image name="share" width="32" height="32"/>
     </resources>

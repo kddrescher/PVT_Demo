@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE623D911D315AFC003CFF39 /* PVT.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE623D8F1D315AFC003CFF39 /* PVT.xcdatamodeld */; };
+		CE623D951D31641C003CFF39 /* PVTScores+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE623D931D31641C003CFF39 /* PVTScores+CoreDataProperties.swift */; };
+		CE623D961D31641C003CFF39 /* PVTScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE623D941D31641C003CFF39 /* PVTScores.swift */; };
+		CE623D991D31785C003CFF39 /* ScoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE623D981D31785C003CFF39 /* ScoresTableViewController.swift */; };
+		CE623DAA1D3195E3003CFF39 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE623DA91D3195E3003CFF39 /* ChartViewController.swift */; };
+		CE623DAB1D3196FF003CFF39 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE623DA21D318BE1003CFF39 /* Charts.framework */; };
+		CE623DAC1D3196FF003CFF39 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE623DA21D318BE1003CFF39 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE63AADC1D2BF8B10017E1F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE63AADB1D2BF8B10017E1F3 /* AppDelegate.swift */; };
 		CE63AADE1D2BF8B10017E1F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE63AADD1D2BF8B10017E1F3 /* ViewController.swift */; };
 		CE63AAE11D2BF8B10017E1F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE63AADF1D2BF8B10017E1F3 /* Main.storyboard */; };
@@ -19,6 +26,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CE623DA11D318BE1003CFF39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE623D9A1D318BE1003CFF39 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
+		CE623DA31D318BE1003CFF39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE623D9A1D318BE1003CFF39 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A52C5C371BAC5CA400594CDD;
+			remoteInfo = "Charts-TV";
+		};
+		CE623DA51D318BE1003CFF39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE623D9A1D318BE1003CFF39 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65B3F5BF1C7370BE000983D0;
+			remoteInfo = "Charts-OSX";
+		};
+		CE623DA71D318BE1003CFF39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE623D9A1D318BE1003CFF39 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
+			remoteInfo = ChartsTests;
+		};
+		CE623DAD1D3196FF003CFF39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE623D9A1D318BE1003CFF39 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
 		CE63AAED1D2BF8B10017E1F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE63AAD01D2BF8B10017E1F3 /* Project object */;
@@ -35,7 +77,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CE623DAF1D319700003CFF39 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE623DAC1D3196FF003CFF39 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		CE623D901D315AFC003CFF39 /* PVT.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PVT.xcdatamodel; sourceTree = "<group>"; };
+		CE623D931D31641C003CFF39 /* PVTScores+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PVTScores+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE623D941D31641C003CFF39 /* PVTScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PVTScores.swift; sourceTree = "<group>"; };
+		CE623D981D31785C003CFF39 /* ScoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresTableViewController.swift; sourceTree = "<group>"; };
+		CE623D9A1D318BE1003CFF39 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CE623DA91D3195E3003CFF39 /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		CE63AAD81D2BF8B10017E1F3 /* Reaction Time2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reaction Time2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE63AADB1D2BF8B10017E1F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE63AADD1D2BF8B10017E1F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE623DAB1D3196FF003CFF39 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,9 +141,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE623D9B1D318BE1003CFF39 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE623DA21D318BE1003CFF39 /* Charts.framework */,
+				CE623DA41D318BE1003CFF39 /* Charts.framework */,
+				CE623DA61D318BE1003CFF39 /* Charts.framework */,
+				CE623DA81D318BE1003CFF39 /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CE63AACF1D2BF8B10017E1F3 = {
 			isa = PBXGroup;
 			children = (
+				CE623D931D31641C003CFF39 /* PVTScores+CoreDataProperties.swift */,
+				CE623D941D31641C003CFF39 /* PVTScores.swift */,
 				CE63AADA1D2BF8B10017E1F3 /* Reaction Time2 */,
 				CE63AAEF1D2BF8B10017E1F3 /* Reaction Time2Tests */,
 				CE63AAFA1D2BF8B10017E1F3 /* Reaction Time2UITests */,
@@ -102,11 +178,15 @@
 			isa = PBXGroup;
 			children = (
 				CE63AADB1D2BF8B10017E1F3 /* AppDelegate.swift */,
-				CE63AADF1D2BF8B10017E1F3 /* Main.storyboard */,
 				CE63AADD1D2BF8B10017E1F3 /* ViewController.swift */,
 				CE63AB091D2BF96B0017E1F3 /* OutputViewController.swift */,
 				CE63AB461D2C65620017E1F3 /* SettingsViewController.swift */,
+				CE63AADF1D2BF8B10017E1F3 /* Main.storyboard */,
+				CE623DA91D3195E3003CFF39 /* ChartViewController.swift */,
+				CE623D981D31785C003CFF39 /* ScoresTableViewController.swift */,
 				CE63AAE21D2BF8B10017E1F3 /* Assets.xcassets */,
+				CE623D8F1D315AFC003CFF39 /* PVT.xcdatamodeld */,
+				CE623D9A1D318BE1003CFF39 /* Charts.xcodeproj */,
 				CE63AAE41D2BF8B10017E1F3 /* LaunchScreen.storyboard */,
 				CE63AAE71D2BF8B10017E1F3 /* Info.plist */,
 			);
@@ -141,10 +221,12 @@
 				CE63AAD41D2BF8B10017E1F3 /* Sources */,
 				CE63AAD51D2BF8B10017E1F3 /* Frameworks */,
 				CE63AAD61D2BF8B10017E1F3 /* Resources */,
+				CE623DAF1D319700003CFF39 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CE623DAE1D3196FF003CFF39 /* PBXTargetDependency */,
 			);
 			name = "Reaction Time2";
 			productName = "Reaction Time2";
@@ -221,6 +303,12 @@
 			mainGroup = CE63AACF1D2BF8B10017E1F3;
 			productRefGroup = CE63AAD91D2BF8B10017E1F3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CE623D9B1D318BE1003CFF39 /* Products */;
+					ProjectRef = CE623D9A1D318BE1003CFF39 /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CE63AAD71D2BF8B10017E1F3 /* Reaction Time2 */,
@@ -229,6 +317,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CE623DA21D318BE1003CFF39 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = CE623DA11D318BE1003CFF39 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE623DA41D318BE1003CFF39 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = CE623DA31D318BE1003CFF39 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE623DA61D318BE1003CFF39 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = CE623DA51D318BE1003CFF39 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE623DA81D318BE1003CFF39 /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = CE623DA71D318BE1003CFF39 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CE63AAD61D2BF8B10017E1F3 /* Resources */ = {
@@ -262,8 +381,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE623D991D31785C003CFF39 /* ScoresTableViewController.swift in Sources */,
+				CE623D961D31641C003CFF39 /* PVTScores.swift in Sources */,
 				CE63AADE1D2BF8B10017E1F3 /* ViewController.swift in Sources */,
 				CE63AB0A1D2BF96B0017E1F3 /* OutputViewController.swift in Sources */,
+				CE623D911D315AFC003CFF39 /* PVT.xcdatamodeld in Sources */,
+				CE623DAA1D3195E3003CFF39 /* ChartViewController.swift in Sources */,
+				CE623D951D31641C003CFF39 /* PVTScores+CoreDataProperties.swift in Sources */,
 				CE63AADC1D2BF8B10017E1F3 /* AppDelegate.swift in Sources */,
 				CE63AB471D2C65620017E1F3 /* SettingsViewController.swift in Sources */,
 			);
@@ -288,6 +412,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CE623DAE1D3196FF003CFF39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Charts-iOS";
+			targetProxy = CE623DAD1D3196FF003CFF39 /* PBXContainerItemProxy */;
+		};
 		CE63AAEE1D2BF8B10017E1F3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CE63AAD71D2BF8B10017E1F3 /* Reaction Time2 */;
@@ -409,6 +538,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Reaction Time2/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kent-drescher.Reaction-Time2";
@@ -420,6 +550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Reaction Time2/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kent-drescher.Reaction-Time2";
@@ -492,6 +623,7 @@
 				CE63AB021D2BF8B10017E1F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE63AB031D2BF8B10017E1F3 /* Build configuration list for PBXNativeTarget "Reaction Time2Tests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +632,7 @@
 				CE63AB051D2BF8B10017E1F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE63AB061D2BF8B10017E1F3 /* Build configuration list for PBXNativeTarget "Reaction Time2UITests" */ = {
 			isa = XCConfigurationList;
@@ -508,8 +641,22 @@
 				CE63AB081D2BF8B10017E1F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CE623D8F1D315AFC003CFF39 /* PVT.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE623D901D315AFC003CFF39 /* PVT.xcdatamodel */,
+			);
+			currentVersion = CE623D901D315AFC003CFF39 /* PVT.xcdatamodel */;
+			path = PVT.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CE63AAD01D2BF8B10017E1F3 /* Project object */;
 }

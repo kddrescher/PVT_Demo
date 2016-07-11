@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import AVFoundation
 
 var DURATION = 3
@@ -18,6 +19,8 @@ var TIMEOUT = 30.0
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    var allTestResults  = [NSManagedObject]()
+
     var id = String()
     var lblStr = String()
     var hdrStr = String()
@@ -43,7 +46,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var isShowingTime = false
     var isResponding = false
     var isTestComplete = false
-
+    
+    @IBOutlet weak var exportButton: UIBarButtonItem!
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var trialsTextField: UITextField!
@@ -62,7 +66,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func startTimer(sender:AnyObject) {
         
-        id = idTextField.text!
+        //id = idTextField.text!
         timerEnd = Double(DURATION) * 60
         
         if (!timer.valid) {
@@ -146,20 +150,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
             falseStart+=1
             waitCount = 0.0
             lblStr = "FALSE START"
-            print("\(falseStart) False Start(s)")
+            //print("\(falseStart) False Start(s)")
         }
         //Check for < 100ms
         if respCount > 0.0 && respCount <= 0.1 {
             falseStart+=1
             lblStr = "FALSE START"
-            print("\(falseStart) False Start(s)")
+            //print("\(falseStart) False Start(s)")
             
         }
         
         //Check for Lapse <30sec
         if respCount > 0.500 {
             lapse+=1
-            print("\(lapse) Lapse(s) Recorded \(respCount)")
+            //print("\(lapse) Lapse(s) Recorded \(respCount)")
         }
         recordTrial()
         
@@ -199,18 +203,151 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func reportData() {
         
-        var outputStr = id + ", " + String(trialsArray.count) + ", " + String(falseStart) + ", " + String(lapse)
-        hdrStr = "id, num, fs, lps, "
+        var median: Double
+        var lapse: Int
+        var falseSt: Int
+        var lapsePR: Double
+        var sumLFSt: Int
+        var perfScr: Double
+        var meanRT: Double
+        var meanTrRT: Double
+        var fastRT: Double
+        var slowRT: Double
+        
+        var filteredArray = [Double]()
+        var lapseArray = [Double]()
+        
+        filteredArray = trialsArray.filter({$0 > 0.100})
+        filteredArray.sortInPlace {
+            return $0 < $1 }
+        
+        //Median RT (does this include False Starts?  Assuming No)
+        let med = Int(filteredArray.count / 2)
+        median = filteredArray[med-1]
+        print("Median = \(median)")
+        
+        //Mean RT (does this include False Starts?  Assuming No)
+        var sum = 0.0
+        for tr in filteredArray {
+            sum = sum+tr
+            print("tr \(tr)")
+        }
+        meanRT = sum / Double(filteredArray.count)
+        print("meanRT = \(meanRT)")
+        
+        //Fastest 10% RT (is this Sum or Mean? Assuming mean)
+        var tenth = Int(filteredArray.count / 10)
+        if tenth == 0 {tenth = 1}
+        
+        print("tenth = \(tenth)")
+        sum = 0.0
+        for i in 0...tenth {
+            sum = sum + filteredArray[i]
+        }
+        fastRT = sum / Double(tenth)
+        print("fastRT = \(fastRT)")
+        
+        
+        //Mean 1/RT
+        sum = 0.0
+        for tr in filteredArray {
+            sum = sum + (1.0 - (tr))
+            //print("1/RT \(1-(tr))")
+        }
+        meanTrRT = sum / Double(filteredArray.count)
+        print("meanTrRT = \(meanTrRT)")
+        
+        // 10% 1/RT (is this Sum or Mean? Assuming mean)
+        sum = 0.0
+        
+        for i in (filteredArray.count-1)-tenth...filteredArray.count-1 {
+            sum = sum + (1.0 - filteredArray[i])
+        }
+        slowRT = sum / Double(tenth)
+        print("slowRT = \(slowRT)")
+        
+        //Number of Lapses
+        lapseArray = trialsArray.filter({$0 > 0.500})
+        lapse = lapseArray.count
+        print("lapse = \(lapse)")
+        
+        //Lapse Probability (i.e., number of lapses divided by the number of valid stimuli, excluding false starts)
+        lapsePR = Double(lapse) / Double(filteredArray.count)
+        print("lapsePR = \(lapsePR)")
+        
+        //Number of false starts
+        falseSt = trialsArray.count - filteredArray.count
+        print("falseSt = \(falseSt)")
+        
+        //Sum of Lapses and False Starts
+        sumLFSt = lapse + falseSt
+        print("sumLFSt = \(sumLFSt)")
+        
+        //Performance Score (i.e. defined as 1 minus the number of lapses and false starts divided by the number of valid stimuli (including false starts)
+        perfScr = 1.0 - (Double(sumLFSt) / Double(trialsArray.count))
+        print("perfScr = \(perfScr)")
+
+        
+        
+        hdrStr = "trials, median, meanRT, fastRT, meanTrRT, slowRT, lapse, lapsePR, falseSt, sumLFSt, perfScr, "
+        
+        var outputStr = String(trialsArray.count) + ", \(median), \(meanRT), \(fastRT), \(meanTrRT), \(slowRT), \(lapse), \(lapsePR), \(falseSt), \(sumLFSt), \(perfScr), "
         
         for i in 0...trialsArray.count-1 {
             outputStr = outputStr + ", " +  waitString(waitArray[i]) + ", " + timeString(trialsArray[i])
             hdrStr = hdrStr + ", w\(i+1), rt\(i+1)"
             
         }
+
         hdrStr = hdrStr + "\n" + outputStr
-        shareButton.enabled = true
         
-        //Save test to Core Data (To Be Implemented)
+        exportButton.enabled = true
+        
+        //Prepare to save test in Core Data
+        let date = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .ShortStyle
+        let today = formatter.stringFromDate(date)
+        
+        //Present Score and Save data to Core data the dismiss controller
+        
+        //1
+        let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        //2
+        let entity =  NSEntityDescription.entityForName("PVTScores",
+                                                        inManagedObjectContext:managedContext)
+        
+        let score = NSManagedObject(entity: entity!,
+                                    insertIntoManagedObjectContext: managedContext)
+        
+        //3
+        score.setValue(today, forKey: "testDate")
+        score.setValue(median, forKey: "median")
+        score.setValue(lapse, forKey: "lapse")
+        score.setValue(falseSt, forKey: "falseSt")
+        score.setValue(lapsePR, forKey: "lapsePR")
+        score.setValue(sumLFSt, forKey: "sumLFSt")
+        score.setValue(perfScr, forKey: "perfScr")
+        score.setValue(meanRT, forKey: "meanRT")
+        score.setValue(meanTrRT, forKey: "meanTrRT")
+        score.setValue(fastRT, forKey: "fastRT")
+        score.setValue(slowRT, forKey: "slowRT")
+        score.setValue(hdrStr, forKey: "pvtCSV")
+        
+        //4
+        do {
+            try managedContext.save()
+            //5
+            allTestResults.append(score)
+            
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
         
         //Reset variables for next test
         responseButton.enabled = false
@@ -264,6 +401,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let context: NSManagedObjectContext = appDel.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "PVTScores")
+        
+        request.returnsObjectsAsFaults = false
+        
+        
+        do {
+            let results =
+                try context.executeFetchRequest(request)
+            allTestResults = results as! [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        print("Core Data has \(allTestResults.count) test records")
+        //print(allTestResultsS)
+        
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
@@ -283,6 +440,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         startButton.layer.shadowRadius = 4
         startButton.layer.shadowOpacity = 0.5
         startButton.layer.shadowOffset = CGSize.zero
+        responseButton.enabled = false
 
     }
     
@@ -309,15 +467,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "settingstSegue" {
             let vc = segue.destinationViewController as! SettingsViewController
             
-            //vc.incomingText = lblStr
+            
         }
 
         if segue.identifier == "outputSegue" {
+            let vc = segue.destinationViewController as! UINavigationController
+            
+            
+        }
+        
+        if segue.identifier == "exportSegue" {
             let vc = segue.destinationViewController as! OutputViewController
             
             vc.incomingText = hdrStr
             
         }
+
     }
     
 }

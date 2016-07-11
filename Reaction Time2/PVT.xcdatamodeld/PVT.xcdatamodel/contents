@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+    <entity name="PVTScores" representedClassName=".PVTScores" syncable="YES">
+        <attribute name="falseSt" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="fastRT" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lapse" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="lapsePR" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="meanRT" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="meanTrRT" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="median" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="perfScr" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="pvtCSV" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="slowRT" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="sumLFSt" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="testDate" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="PVTScores" positionX="-63" positionY="-18" width="128" height="223"/>
+    </elements>
+</model>
